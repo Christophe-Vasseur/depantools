@@ -1,6 +1,6 @@
 :: ---------------------------------
 :: --        DEPANTOOLS.BAT       --
-:: --         Version 1.0         --
+:: --         Version 1.6         --
 :: ---------------------------------
 
 @echo off
@@ -65,7 +65,7 @@ echo    ----------------------
 echo.
 echo    1. Version de Windows
 echo    2. 32/64 bits
-echo    3. MBR ou GPT 
+echo    3. Partition MBR ou GPT 
 echo    4. Verif. Activation Windows
 echo    5. Type de licence
 echo    6. Crack licence Windows
@@ -102,9 +102,9 @@ echo    2. Gestionnaire de disque
 echo    3. Gestionnaire de peripheriques
 echo    4. Observateur evenements
 echo    5. Optimiser les lecteurs
-echo    6. Ajout/supp applications
-echo    7. Nettoyage (options avancees)
-echo    8. Fenetre des fonctionnalites de Windows
+echo    6. Modif/Supp les applications
+echo    7. Nettoyage de disque (mode avance)
+echo    8. Fonctionnalites de Windows
 echo    9. Retour menu principal
 echo   10. Quitter
 echo.
@@ -156,7 +156,7 @@ echo    -----------------------------
 echo.
 echo    1. Menu CHKDSK /f (court)
 echo    2. Menu CHKDSK /f /r
-echo    3. SFC
+echo    3. SFC /SCANNOW
 echo    4. DSIM Verifier Image - scanHealth - (echec SFC)
 echo    5. DSIM Verif Image Reparable - CheckHealth -
 echo    6. DSIM Repare Image - RestoreHealth -
@@ -235,29 +235,31 @@ echo    -----------------------------
 echo    --       Menu Reseau       --
 echo    -----------------------------
 echo.
-echo    1. list config IP actuelle
-echo    2. Config complete du reseau (/all)
-echo    3. Ping Google
-echo    4. Affiche le cache DNS (/displaydns)
-echo    5. Vide le cache DNS (/flushdns)
-echo    6. Libere config DHCP (/release) 
-echo    7. Renouvelle le DHCP (/renew)
-echo    8. Reinitialise le reseau (Winsock)
-echo    9. Retour menu principal
-echo   10. Quitter
+echo    1. Configuration reseau actuelle
+echo    2. Configuration complete du reseau (/all)
+echo    3. Connaitre le reseau WIFI connecte
+echo    4. Ping Google
+echo    5. Affiche le cache DNS (/displaydns)
+echo    6. Vide le cache DNS (/flushdns)
+echo    7. Libere config DHCP (/release) 
+echo    8. Renouvelle le DHCP (/renew)
+echo    9. Reinitialise le reseau (Winsock)
+echo   10. Retour menu principal
+echo   11. Quitter
 echo.
 set /p reponse="Faites votre choix ? "
 
 If /i "%reponse%"=="1" goto :res-ip
 If /i "%reponse%"=="2" goto :res-all
-If /i "%reponse%"=="3" goto :res-ping
-If /i "%reponse%"=="4" goto :res-dns
-If /i "%reponse%"=="5" goto :res-dnsraz
-If /i "%reponse%"=="6" goto :res-razdhcp
-If /i "%reponse%"=="7" goto :res-newdhcp
-If /i "%reponse%"=="8" goto :res-init
-If /i "%reponse%"=="9" goto :menuprin
-If /i "%reponse%"=="10" goto :fin
+If /i "%reponse%"=="3" goto :res-wifi
+If /i "%reponse%"=="4" goto :res-ping
+If /i "%reponse%"=="5" goto :res-dns
+If /i "%reponse%"=="6" goto :res-dnsraz
+If /i "%reponse%"=="7" goto :res-razdhcp
+If /i "%reponse%"=="8" goto :res-newdhcp
+If /i "%reponse%"=="9" goto :res-init
+If /i "%reponse%"=="10" goto :menuprin
+If /i "%reponse%"=="11" goto :fin
 goto :menureseau
 
 :: ******************** MENU ENERGIE & ALIMENTATION *****************************
@@ -296,18 +298,20 @@ echo.
 echo    1. Redemarrer Windows (10s)
 echo    2. Arret de Windows (10s)
 echo    3. Forcer l'arret de Windows
-echo    4. Redemarrer sur les options de recuperation
-echo    5. Retour menu principal
-echo    6. Quitter
+echo    4. Redemarrer dans le BIOS/UEFI
+echo    5. Redemarrer sur les options de recuperation
+echo    6. Retour menu principal
+echo    7. Quitter
 echo.
 set /p reponse="Faites votre choix ? "
 
 If /i "%reponse%"=="1" goto :reboot
 If /i "%reponse%"=="2" goto :stop30
 If /i "%reponse%"=="3" goto :stop
-If /i "%reponse%"=="4" goto :reboot-rec
-If /i "%reponse%"=="5" goto :menuprin
-If /i "%reponse%"=="6" goto :fin
+If /i "%reponse%"=="4" goto :bios
+If /i "%reponse%"=="5" goto :reboot-rec
+If /i "%reponse%"=="6" goto :menuprin
+If /i "%reponse%"=="7" goto :fin
 goto :menuarret
 :: ******************** MENU DOCUMENTATION *****************************
 :menudocu
@@ -350,6 +354,7 @@ exit
 :: Version de Windows
 :infos01
 cls & echo. & echo. & echo.
+echo             -- WINDOWS 10 --
 echo Version Build       Nom de code           Date
 echo  1507   10240   Threshold 1   W10        07/2015
 echo  1511   10586   Threshold 2   W10-1511   10/2015
@@ -363,6 +368,14 @@ echo  1909   18363       19H2      W10-1909   11/2019
 echo  2004   19041       20H1      W10-2004   05/2020
 echo  20H2   19042       20H2      W10-20H2   10/2020
 echo  21H1   19043       21H1      W10-21H1   05/2021
+echo  21H2   19044       21H2      W10-21H2   11/2021
+echo  22H2   19045       21H2      W10-22H2   10/2022
+echo.
+echo             -- WINDOWS 11 --
+echo Version Build       Nom de code           Date
+echo  21H1   22000       Sun Valley           10/2021
+echo  22H1   22621       Sun Valley           09/2022
+echo.
 start winver
 echo. & echo. & echo.
 pause
@@ -740,17 +753,17 @@ pause
 goto :menucompte
 
 :admin-actif
-
+net user Administrateur
 pause
 goto :menucompte
 
 :on-admin
-
+net user Administrateur /active:yes
 pause
 goto :menucompte
 
 :off-admin
-
+net user Administrateur /active:no
 pause
 goto :menucompte
 
@@ -791,14 +804,19 @@ goto :menusecu
 :: MRT Malicious Removal Tool
 :lancer-mrt
 cls
-start mrt
-echo. & echo.
-echo Le rapport de MRT se trouve dans le dossier
-echo         C:\Windows\debug\mrt.log
+if exist "%WINDIR%\system32\mrt.exe" (
+    start mrt
+    echo. & echo.
+    echo Le rapport de MRT se trouve dans le dossier
+    echo         C:\Windows\debug\mrt.log
+) else (
+    echo. & echo.
+    echo       MRT n'est pas present
+    echo        sur cette machine
+)
 echo. & echo.
 pause
 goto :menusecu
-
 :: ************************** RESEAU *********************************
 
 :: Affiche la config IP actuelle
@@ -812,6 +830,17 @@ goto :menureseau
 :res-all
 cls
 ipconfig /all
+pause
+goto :menureseau
+
+:: Connaitre le reseau WIFI connecté
+:res-wifi
+cls
+echo. & echo.
+echo Etat admin    Etat          Type            Nom de l'interface
+echo -------------------------------------------------------------------------
+netsh interface show interface | findstr /C:"Wireless" /C:"Name" /C:"Wi-Fi"
+echo. & echo.
 pause
 goto :menureseau
 
@@ -959,6 +988,12 @@ cls & echo. & echo. & echo.
 shutdown /s /f /t 0
 exit
 
+:: Redémarrer dans le BIOS
+:bios
+cls & echo. & echo. & echo.
+shutdown /s /fw /f /t 0
+exit
+
 :: Reboot sur les options de recupération
 :reboot-rec
 cls & echo. & echo. & echo.
@@ -984,7 +1019,7 @@ echo   Microsoft              : Vol Bas, Vol Haut
 echo. & echo. & echo.
 echo            -- Comment acceder au Boot Menu --
 echo.
-echo            Attention pour cetains ordinateurs,
+echo            Attention pour certains ordinateurs,
 echo        il faut activer le Boot Menu dans le BIOS !
 echo.
 echo   Touches standards : ESC, F2, F8, F10, F9, F12, ESC + F9
@@ -1008,9 +1043,9 @@ echo.
 start ms-settings:windowsdefender
 echo  Cliquez sur "Controle des applications et du navigateur"
 echo.
-echo  Desacter "Verifier les applications et les fichiers"
-echo  Desacter "SmartScreen pour Microsoft Edge"
-echo  Desacter "SmartScreen pour les applications du Microsoft Store"
+echo  Desactiver "Verifier les applications et les fichiers"
+echo  Desactiver "SmartScreen pour Microsoft Edge"
+echo  Desactiver "SmartScreen pour les applications du Microsoft Store"
 echo. & echo.
 pause
 goto :menudocu
@@ -1064,7 +1099,7 @@ goto :eof
 :about
 cls & echo. & echo.
 echo  +--------------------------------------+
-echo  !     DepanTools       version 1.0     !
+echo  !     DepanTools       version 1.6     !
 echo  !                                      !
 echo  !    par chris.vasseur.dev@gmail.com   !
 echo  +--------------------------------------+
