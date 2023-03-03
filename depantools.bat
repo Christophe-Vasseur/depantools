@@ -1,6 +1,6 @@
 :: ---------------------------------
 :: --        DEPANTOOLS.BAT       --
-:: --         Version 1.6         --
+:: --         Version 1.61        --
 :: ---------------------------------
 
 @echo off
@@ -72,8 +72,9 @@ echo    6. Crack licence Windows
 echo    7. Liste Variables d'Env.
 echo    8. Liste des utilisateurs
 echo    9. Verif. SSD Trim actif (AHCI)
-echo   10. Retour menu principal.
-echo   11. Quitter
+echo   10. Contenu de la corbeille
+echo   11. Retour menu principal.
+echo   12. Quitter
 echo.
 set /p reponse="Faites votre choix ? "
 
@@ -86,8 +87,9 @@ If /i "%reponse%"=="6" goto :infos06
 If /i "%reponse%"=="7" goto :infos07
 If /i "%reponse%"=="8" goto :infos08
 If /i "%reponse%"=="9" goto :infos09
-If /i "%reponse%"=="10" goto :menuprin
-If /i "%reponse%"=="11" goto :fin
+If /i "%reponse%"=="10" goto :infos10
+If /i "%reponse%"=="11" goto :menuprin
+If /i "%reponse%"=="12" goto :fin
 goto :menuinfo
 
 :: ******************** MENU OUTILS WINDOWS *****************************
@@ -105,8 +107,9 @@ echo    5. Optimiser les lecteurs
 echo    6. Modif/Supp les applications
 echo    7. Nettoyage de disque (mode avance)
 echo    8. Fonctionnalites de Windows
-echo    9. Retour menu principal
-echo   10. Quitter
+echo    9. Gestionnaire de taches
+echo   10. Retour menu principal
+echo   11. Quitter
 echo.
 set /p reponse="Faites votre choix ? "
 
@@ -118,8 +121,9 @@ If /i "%reponse%"=="5" goto :outils05
 If /i "%reponse%"=="6" goto :outils06
 If /i "%reponse%"=="7" goto :outils07
 If /i "%reponse%"=="8" goto :outils08
-If /i "%reponse%"=="9" goto :menuprin
-If /i "%reponse%"=="10" goto :fin
+If /i "%reponse%"=="9" goto :outils09
+If /i "%reponse%"=="10" goto :menuprin
+If /i "%reponse%"=="11" goto :fin
 goto :menutools
 
 :: ******************** MENU RESTAURATION WINDOWS *****************************
@@ -476,6 +480,14 @@ echo.
 pause
 goto :menuinfo
 
+:: Visualisation du contenu de la corbeille
+:infos10
+cls
+start shell:RecycleBinFolder
+echo.
+pause
+goto :menuinfo
+
 :: ************************ OUTILS *******************************
 
 :: Panneau de configuration
@@ -534,6 +546,12 @@ start optionalfeatures
 pause
 goto :menutools
 
+:: Lancer le gestionnaire de taches
+:outils09
+cls
+start taskmgr
+pause
+goto :menutools
 
 :: *********************** RESTAURATIONS ******************************
 
@@ -1099,7 +1117,7 @@ goto :eof
 :about
 cls & echo. & echo.
 echo  +--------------------------------------+
-echo  !     DepanTools       version 1.6     !
+echo  !     DepanTools       version 1.61    !
 echo  !                                      !
 echo  !    par chris.vasseur.dev@gmail.com   !
 echo  +--------------------------------------+

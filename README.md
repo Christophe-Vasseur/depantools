@@ -43,6 +43,7 @@ Cette partie permet d'afficher certaines informations du système d'exploitation
 - Liste des variables d'environnement
 - Liste des utilisateurs
 - Activation ou non de l'option Trim (AHCI) des SDD.
+- Visualise le contenu de la corbeille
 
 ### Menu Outils Windows
 
@@ -142,3 +143,4 @@ Vous êtes libres d'utiliser l'outil et de le modifier.
 - **1.00** : Première version présentable !
 - **1.5** : Ajout de nombreuses fonctionnalités
 - **1.6** : Vérification de la présense l'outil "mrt"
+- **1.61** : Corbeille, Gestionnaire de tâches
