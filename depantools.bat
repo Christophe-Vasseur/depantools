@@ -1,6 +1,6 @@
 :: ---------------------------------
 :: --        DEPANTOOLS.BAT       --
-:: --         Version 1.61        --
+:: --         Version 1.70        --
 :: ---------------------------------
 
 @echo off
@@ -108,8 +108,9 @@ echo    6. Modif/Supp les applications
 echo    7. Nettoyage de disque (mode avance)
 echo    8. Fonctionnalites de Windows
 echo    9. Gestionnaire de taches
-echo   10. Retour menu principal
-echo   11. Quitter
+echo   10. Ajout le God Mode
+echo   11. Retour menu principal
+echo   12. Quitter
 echo.
 set /p reponse="Faites votre choix ? "
 
@@ -122,8 +123,9 @@ If /i "%reponse%"=="6" goto :outils06
 If /i "%reponse%"=="7" goto :outils07
 If /i "%reponse%"=="8" goto :outils08
 If /i "%reponse%"=="9" goto :outils09
-If /i "%reponse%"=="10" goto :menuprin
-If /i "%reponse%"=="11" goto :fin
+If /i "%reponse%"=="10" goto :outils10
+If /i "%reponse%"=="11" goto :menuprin
+If /i "%reponse%"=="12" goto :fin
 goto :menutools
 
 :: ******************** MENU RESTAURATION WINDOWS *****************************
@@ -191,21 +193,23 @@ echo    -------------------------------
 echo.
 echo    1. Lister les differents Comptes
 echo    2. Lister les differents Comptes en detail
-echo    3. Verifier activation compte administrateur integre
-echo    4. Activer compte administrateur integre
-echo    5. Desactiver compte administrateur integre
-echo    6. Retour menu principal
-echo    7. Quitter
+echo    3. Lister les comptes Administrateurs
+echo    4. Verifier activation compte administrateur integre
+echo    5. Activer compte administrateur integre
+echo    6. Desactiver compte administrateur integre
+echo    7. Retour menu principal
+echo    8. Quitter
 echo.
 set /p reponse="Faites votre choix ? "
 
 If /i "%reponse%"=="1" goto :user-list
 If /i "%reponse%"=="2" goto :user-alist
-If /i "%reponse%"=="3" goto :admin-actif
-If /i "%reponse%"=="4" goto :on-admin
-If /i "%reponse%"=="5" goto :off-admin
-If /i "%reponse%"=="6" goto :menuprin
-If /i "%reponse%"=="7" goto :fin
+If /i "%reponse%"=="3" goto :admin-list
+If /i "%reponse%"=="4" goto :admin-actif
+If /i "%reponse%"=="5" goto :on-admin
+If /i "%reponse%"=="6" goto :off-admin
+If /i "%reponse%"=="7" goto :menuprin
+If /i "%reponse%"=="8" goto :fin
 goto :menucompte
 
 :: ************************** MENU SECURITE *********************************
@@ -218,18 +222,24 @@ echo.
 echo    1. Activer UAC
 echo    2. Desactiver UAC
 echo    3. Fenetre Securite Windows
-echo    4. Lancer MRT (Malicious Removal Tool)
-echo    5. Retour menu principal
-echo    6. Quitter
+echo    4. Gestionnaire d'identification
+echo    5. Lancer MRT (Malicious Removal Tool)
+echo    6. BitLocker actif ?
+echo    7. Visualise la clef recuperation Bitlocker
+echo    8. Retour menu principal
+echo    9. Quitter
 echo.
 set /p reponse="Faites votre choix ? "
 
 If /i "%reponse%"=="1" goto :on-uac
 If /i "%reponse%"=="2" goto :off-uac
 If /i "%reponse%"=="3" goto :win-secu
-If /i "%reponse%"=="4" goto :lancer-mrt
-If /i "%reponse%"=="5" goto :menuprin
-If /i "%reponse%"=="6" goto :fin
+If /i "%reponse%"=="4" goto :ges-iden
+If /i "%reponse%"=="5" goto :lancer-mrt
+If /i "%reponse%"=="6" goto :bitlocker
+If /i "%reponse%"=="7" goto :cle-bitloc
+If /i "%reponse%"=="8" goto :menuprin
+If /i "%reponse%"=="9" goto :fin
 goto :menusecu
 
 :: ******************** MENU RESEAU *****************************
@@ -239,17 +249,18 @@ echo    -----------------------------
 echo    --       Menu Reseau       --
 echo    -----------------------------
 echo.
-echo    1. Configuration reseau actuelle
-echo    2. Configuration complete du reseau (/all)
+echo    1. Liste la configuration du reseau 
+echo    2. Liste la configuration complete du reseau (/all)
 echo    3. Connaitre le reseau WIFI connecte
 echo    4. Ping Google
-echo    5. Affiche le cache DNS (/displaydns)
-echo    6. Vide le cache DNS (/flushdns)
-echo    7. Libere config DHCP (/release) 
-echo    8. Renouvelle le DHCP (/renew)
-echo    9. Reinitialise le reseau (Winsock)
-echo   10. Retour menu principal
-echo   11. Quitter
+echo    5. Visualise le fichier HOSTS
+echo    6. Affiche le cache DNS (/displaydns)
+echo    7. Vide le cache DNS (/flushdns)
+echo    8. Libere config DHCP (/release) 
+echo    9. Renouvelle le DHCP (/renew)
+echo   10. Reinitialise le reseau (Winsock)
+echo   11. Retour menu principal
+echo   12. Quitter
 echo.
 set /p reponse="Faites votre choix ? "
 
@@ -257,13 +268,14 @@ If /i "%reponse%"=="1" goto :res-ip
 If /i "%reponse%"=="2" goto :res-all
 If /i "%reponse%"=="3" goto :res-wifi
 If /i "%reponse%"=="4" goto :res-ping
-If /i "%reponse%"=="5" goto :res-dns
-If /i "%reponse%"=="6" goto :res-dnsraz
-If /i "%reponse%"=="7" goto :res-razdhcp
-If /i "%reponse%"=="8" goto :res-newdhcp
-If /i "%reponse%"=="9" goto :res-init
-If /i "%reponse%"=="10" goto :menuprin
-If /i "%reponse%"=="11" goto :fin
+If /i "%reponse%"=="5" goto :res-hosts
+If /i "%reponse%"=="6" goto :res-dns
+If /i "%reponse%"=="7" goto :res-dnsraz
+If /i "%reponse%"=="8" goto :res-razdhcp
+If /i "%reponse%"=="9" goto :res-newdhcp
+If /i "%reponse%"=="10" goto :res-init
+If /i "%reponse%"=="11" goto :menuprin
+If /i "%reponse%"=="12" goto :fin
 goto :menureseau
 
 :: ******************** MENU ENERGIE & ALIMENTATION *****************************
@@ -373,12 +385,13 @@ echo  2004   19041       20H1      W10-2004   05/2020
 echo  20H2   19042       20H2      W10-20H2   10/2020
 echo  21H1   19043       21H1      W10-21H1   05/2021
 echo  21H2   19044       21H2      W10-21H2   11/2021
-echo  22H2   19045       21H2      W10-22H2   10/2022
-echo.
+echo  22H2   19045       21H2      W10-22H2   10/2022  Fin de maintenance 14/10/2025
+echo.  
 echo             -- WINDOWS 11 --
 echo Version Build       Nom de code           Date
-echo  21H1   22000       Sun Valley           10/2021
-echo  22H1   22621       Sun Valley           09/2022
+echo  21H2   22000       Sun Valley           10/2021
+echo  22H2   22621       Sun Valley           09/2022
+echo  23H2   22631       Sun Valley           10/2023
 echo.
 start winver
 echo. & echo. & echo.
@@ -441,6 +454,8 @@ echo   -- liste des fichiers et repertoires trouves --
 echo.
 if exist "%ProgramFiles%\KMSpico" echo C:\Program Files\KMSpico : TROUVE
 if exist "%ProgramFiles%\KMSauto" echo C:\Program Files\KMSauto : TROUVE
+if exist "%ProgramW6432%\KMSpico" echo C:\Program Files\KMSpico : TROUVE
+if exist "%ProgramW6432%\KMSauto" echo C:\Program Files\KMSauto : TROUVE 
 if exist "%windir%\AutoKMS" echo C:\Windows\AutoKMS : TROUVE
 if exist "%ProgramData%\Microsoft Toolkit" echo c:\ProgramData\Microsoft Toolkit : TROUVE
 if exist "%windir%\SECOH-QAD.dll" echo C:\Windows\SECOH-QAD.dll : TROUVE
@@ -553,6 +568,17 @@ start taskmgr
 pause
 goto :menutools
 
+:outils10
+cls
+echo.
+cd %USERPROFILE%\desktop
+mkdir "God Mode.{ED7BA470-8E54-465E-825C-99712043E01C}"
+cls
+echo.
+echo  Mode Dieu cree sur le bureau de Windows
+echo.
+pause
+goto :menutools
 :: *********************** RESTAURATIONS ******************************
 
 :: Restauration actif ?
@@ -770,6 +796,11 @@ echo.
 pause
 goto :menucompte
 
+:admin-list
+net localgroup Adminitrateur
+pause
+goto :menucompte
+
 :admin-actif
 net user Administrateur
 pause
@@ -819,6 +850,16 @@ echo.
 pause
 goto :menusecu
 
+:: Affichage 
+:ges-iden
+cls 
+start rundll32.exe keymgr.dll,KRShowKeyMgr
+echo.
+echo   Affichage de la fenetre "Noms et mots de passe utilisateur enregistres"
+echo.
+pause
+goto :menusecu
+
 :: MRT Malicious Removal Tool
 :lancer-mrt
 cls
@@ -835,6 +876,24 @@ if exist "%WINDIR%\system32\mrt.exe" (
 echo. & echo.
 pause
 goto :menusecu
+
+:: Affiche les disques (Bitlocker)
+:bitlocker
+cls 
+manage-bde -status
+echo.
+echo.
+pause
+goto :menusecu
+
+:cle-bitloc
+cls
+manage-bde -protectors -get C:
+echo.
+echo.
+pause
+goto :menusecu
+
 :: ************************** RESEAU *********************************
 
 :: Affiche la config IP actuelle
@@ -871,6 +930,15 @@ echo   Touche Ctrl + C pour stopper
 echo.
 pause
 ping www.google.com
+pause
+goto :menureseau
+
+:: Affiche le fichier HOSTS
+:res-hosts
+cls
+type %SystemRoot%\System32\drivers\etc\hosts  
+echo.
+echo.
 pause
 goto :menureseau
 
@@ -1117,7 +1185,7 @@ goto :eof
 :about
 cls & echo. & echo.
 echo  +--------------------------------------+
-echo  !     DepanTools       version 1.61    !
+echo  !     DepanTools       version 1.70    !
 echo  !                                      !
 echo  !    par chris.vasseur.dev@gmail.com   !
 echo  +--------------------------------------+

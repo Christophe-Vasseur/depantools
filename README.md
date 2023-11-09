@@ -4,7 +4,7 @@
 
 ## Introduction
 
-Ce logiciel est un petit utilitaire écrit en script **Batch**. Prévu pour **Windows 10** il me permet de lancer des commandes très facilement et rapidement sans passer par les traditionnelles fenêtres et menu du système d'exploitation.
+Ce logiciel est un petit utilitaire écrit en script **Batch**. Prévu pour **Windows 10/11** il me permet de lancer des commandes très facilement et rapidement sans passer par les traditionnelles fenêtres et menu du système d'exploitation.
 
 ## A qui s'adresse cet outil ?
 
@@ -37,7 +37,7 @@ Cette partie permet d'afficher certaines informations du système d'exploitation
 - Version de Windows
 - Type de version 32 ou 64 bits
 - Type de partition MBR ou GPT
-- Vérifiaction de l'activation de Windows
+- Vérification de l'activation de Windows
 - Type de licence
 - Vérification de la présence de crack
 - Liste des variables d'environnement
@@ -54,9 +54,11 @@ Cette partie permet de se rendre et d'ouvrir rapidement certaines fonctionnalit�
 - Affiche le Gestionnaire de péripheriques
 - Affiche l'Observateur événements
 - Affiche l'Optimisation des lecteurs SSD
-- Affiche le panneau Programme et fonctionnalités
+- Affiche le gestionnaire des applications
 - Affiche le Nettoyage de disque (options avancées)
+- Affiche le panneau des fonctionnalités
 - Affiche les Fonctionnalités de Windows
+- Affiche le gestionnaire de tâches
 
 ### Menu Points Restauration
 
@@ -89,6 +91,7 @@ Cette partie permet de réaliser quelques actions de base concernant les comptes
 
 - Liste succinte des comptes utilisateurs
 - Liste détaillée des comptes utilisateurs
+- Liste les comptes administrateur
 - Vérification de l'activation du compte administrateur intégré
 - Activation du compte administrateur intégré
 - Déactivation du compte administrateur intégré
@@ -98,7 +101,10 @@ Cette partie permet de réaliser quelques actions de base concernant les comptes
 - Activation de l'UAC
 - Désactivation de l'UAC
 - Affichage de la fenêtre "Sécurité Windows"
+- Affichage du gestionnaire d'identification
 - Exécution de l'outil MRT (Malicious Removal Tool)
+- Affichage de l'activation ou non de Bitlocker sur tous les disques
+- Visualise la clef Bitlocker du lecteur C:
 
 ### Menu Réseau
 
@@ -106,6 +112,7 @@ Cette partie permet de réaliser quelques actions de base concernant les comptes
 - Liste détaillée de la configuration réseau (ipconfig /all)
 - Liste la configuration Wi-Fi
 - Exécution d'un ping vers www.google.com
+- Affichage du fichier HOSTS
 - Affichage du cache DNS
 - Vidage du cache DNS
 - Libération de la connexion DHCP
@@ -140,7 +147,19 @@ Vous êtes libres d'utiliser l'outil et de le modifier.
 
 ## Les versions
 
-- **1.00** : Première version présentable !
-- **1.5** : Ajout de nombreuses fonctionnalités
-- **1.6** : Vérification de la présense l'outil "mrt"
+- **1.70** : (09/11/23)
+     Mise à jour des versions de **Windows**
+     Ajout du Gestionnaire d'identification
+     Information disque **Bitlocker**
+     Visualise la clef de récupération de Bitloker
+     Visualise le fichier **HOSTS**
+     Ajout "**God Mode**" sur le bureau
+- **1.62** : Ajout détection crack **Windows** 
 - **1.61** : Corbeille, Gestionnaire de tâches
+- **1.6**  : Vérification de la présense l'outil **"mrt"**
+- **1.5**  : Ajout de nombreuses fonctionnalités
+- **1.00** : Première version présentable !
+
+
+
+
