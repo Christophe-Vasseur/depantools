@@ -1,6 +1,6 @@
 :: ---------------------------------
 :: --        DEPANTOOLS.BAT       --
-:: --         Version 1.70        --
+:: --         Version 1.71        --
 :: ---------------------------------
 
 @echo off
@@ -191,25 +191,27 @@ echo    -------------------------------
 echo    -- Menu Comptes utilisateurs --
 echo    -------------------------------
 echo.
-echo    1. Lister les differents Comptes
-echo    2. Lister les differents Comptes en detail
-echo    3. Lister les comptes Administrateurs
-echo    4. Verifier activation compte administrateur integre
-echo    5. Activer compte administrateur integre
-echo    6. Desactiver compte administrateur integre
-echo    7. Retour menu principal
-echo    8. Quitter
+echo    1. Affiche la Box des Comptes utilisateurs
+echo    2. Lister les differents Comptes
+echo    3. Lister les differents Comptes en detail
+echo    4. Lister les comptes Administrateurs
+echo    5. Verifier activation compte administrateur integre
+echo    6. Activer compte administrateur integre
+echo    7. Desactiver compte administrateur integre
+echo    8. Retour menu principal
+echo    9. Quitter
 echo.
 set /p reponse="Faites votre choix ? "
 
-If /i "%reponse%"=="1" goto :user-list
-If /i "%reponse%"=="2" goto :user-alist
-If /i "%reponse%"=="3" goto :admin-list
-If /i "%reponse%"=="4" goto :admin-actif
-If /i "%reponse%"=="5" goto :on-admin
-If /i "%reponse%"=="6" goto :off-admin
-If /i "%reponse%"=="7" goto :menuprin
-If /i "%reponse%"=="8" goto :fin
+If /i "%reponse%"=="1" goto :box-users
+If /i "%reponse%"=="2" goto :user-list
+If /i "%reponse%"=="3" goto :user-alist
+If /i "%reponse%"=="4" goto :admin-list
+If /i "%reponse%"=="5" goto :admin-actif
+If /i "%reponse%"=="6" goto :on-admin
+If /i "%reponse%"=="7" goto :off-admin
+If /i "%reponse%"=="8" goto :menuprin
+If /i "%reponse%"=="9" goto :fin
 goto :menucompte
 
 :: ************************** MENU SECURITE *********************************
@@ -259,8 +261,11 @@ echo    7. Vide le cache DNS (/flushdns)
 echo    8. Libere config DHCP (/release) 
 echo    9. Renouvelle le DHCP (/renew)
 echo   10. Reinitialise le reseau (Winsock)
-echo   11. Retour menu principal
-echo   12. Quitter
+echo   11. Affichage MTU
+echo   12. Ethernet : force MTU 1500
+echo   13. WIFI     : force MTU 1500
+echo   14. Retour menu principal
+echo   15. Quitter
 echo.
 set /p reponse="Faites votre choix ? "
 
@@ -274,8 +279,11 @@ If /i "%reponse%"=="7" goto :res-dnsraz
 If /i "%reponse%"=="8" goto :res-razdhcp
 If /i "%reponse%"=="9" goto :res-newdhcp
 If /i "%reponse%"=="10" goto :res-init
-If /i "%reponse%"=="11" goto :menuprin
-If /i "%reponse%"=="12" goto :fin
+If /i "%reponse%"=="11" goto :res-mtu
+If /i "%reponse%"=="12" goto :res-mtue
+If /i "%reponse%"=="13" goto :res-mtuw
+If /i "%reponse%"=="14" goto :menuprin
+If /i "%reponse%"=="15" goto :fin
 goto :menureseau
 
 :: ******************** MENU ENERGIE & ALIMENTATION *****************************
@@ -775,6 +783,14 @@ goto :menurepar
 
 :: ************************** COMPTES UTILISATEURS *********************************
 
+:box-users
+cls
+echo. & echo.
+start netplwiz
+echo.
+pause
+goto :menucompte
+
 :user-list
 cls
 echo. & echo.
@@ -797,12 +813,18 @@ pause
 goto :menucompte
 
 :admin-list
-net localgroup Adminitrateur
+cls
+echo. & echo.
+net localgroup Administrateurs
+echo.
 pause
 goto :menucompte
 
 :admin-actif
+cls
+echo. & echo.
 net user Administrateur
+echo.
 pause
 goto :menucompte
 
@@ -995,6 +1017,37 @@ ipconfig /flushdns
 shutdown /r /t 30 /c "Redemarrage de l'ordinateur dans 30 secondes"
 goto :menureseau
 
+:: Affichage du MTU
+:res-mtu
+cls
+echo.
+netsh interface ipv4 show subinterfaces
+echo.
+echo.
+echo Consulter le MTU des lignes Ethernet et Wi-fi
+echo S'il est en-dessous de 1500 vous pouvez l'augmentez jusqu'a 1500
+echo.
+pause
+goto :menureseau
+
+:: Mettre le MTU à 1500 pour l'Ethernet
+:res-mtue
+cls
+echo.
+netsh int ipv4 set subinterface "Ethernet" mtu=1500 store=persistent
+echo.
+pause
+goto :menureseau
+
+:: Mettre le MTU à 1500 pour le WIFI
+:res-mtuw
+cls
+echo.
+netsh int ipv4 set subinterface "Wi-Fi" mtu=1500 store=persistent
+echo.
+pause
+goto :menureseau
+
 :: ************************ Energie & Consommation *******************************
 
 :: liste des différents mode d'énergie
@@ -1185,7 +1238,7 @@ goto :eof
 :about
 cls & echo. & echo.
 echo  +--------------------------------------+
-echo  !     DepanTools       version 1.70    !
+echo  !     DepanTools       version 1.71    !
 echo  !                                      !
 echo  !    par chris.vasseur.dev@gmail.com   !
 echo  +--------------------------------------+

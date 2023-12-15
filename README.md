@@ -4,7 +4,7 @@
 
 ## Introduction
 
-Ce logiciel est un petit utilitaire écrit en script **Batch**. Prévu pour **Windows 10/11** il me permet de lancer des commandes très facilement et rapidement sans passer par les traditionnelles fenêtres et menu du système d'exploitation.
+Ce logiciel est un petit utilitaire écrit en script **Batch**. Prévu pour **Windows 10/11** il permet de lancer des commandes très facilement et rapidement sans passer par les traditionnelles fenêtres et menu du système d'exploitation.
 
 ## A qui s'adresse cet outil ?
 
@@ -56,9 +56,9 @@ Cette partie permet de se rendre et d'ouvrir rapidement certaines fonctionnalit�
 - Affiche l'Optimisation des lecteurs SSD
 - Affiche le gestionnaire des applications
 - Affiche le Nettoyage de disque (options avancées)
-- Affiche le panneau des fonctionnalités
-- Affiche les Fonctionnalités de Windows
+- Affiche le panneau des fonctionnalités de Windows
 - Affiche le gestionnaire de tâches
+- Ajout icône Mode God sur le bureau
 
 ### Menu Points Restauration
 
@@ -89,6 +89,7 @@ Ne les lancez pas si vous ne savez pas ce que vous faites !
 
 Cette partie permet de réaliser quelques actions de base concernant les comptes utilisateurs.
 
+- Affiche la Box des comptes utilisateurs
 - Liste succinte des comptes utilisateurs
 - Liste détaillée des comptes utilisateurs
 - Liste les comptes administrateur
@@ -118,6 +119,9 @@ Cette partie permet de réaliser quelques actions de base concernant les comptes
 - Libération de la connexion DHCP
 - Renouvellement de la connexion DHCP
 - Réinitialisation du réseau (couche Winsock)
+- Affichage du MTU
+- Change le MTU à 1500 pour l'Ethernet
+- Change le MTU à 1500 pour le WIFI
 
 ### Menu Energie et alimentation
 
@@ -146,15 +150,11 @@ Vous êtes libres d'utiliser l'outil et de le modifier.
 ---
 
 ## Les versions
-
+- **1.71** : (  /12/23) Correction bugs, Ajout la boite des comptes utilisateur, affichage et modification du MTU
 - **1.70** : (09/11/23)
-     Mise à jour des versions de **Windows**
-     Ajout du Gestionnaire d'identification
-     Information disque **Bitlocker**
-     Visualise la clef de récupération de Bitloker
-     Visualise le fichier **HOSTS**
+     Mise à jour des versions de **Windows**, Ajout du Gestionnaire d'identification,  Information disque **Bitlocker**, Visualise la clef de récupération de Bitloker, Visualise le fichier **HOSTS**
      Ajout "**God Mode**" sur le bureau
-- **1.62** : Ajout détection crack **Windows** 
+- **1.62** : Ajout de la détection de crack **Windows** 
 - **1.61** : Corbeille, Gestionnaire de tâches
 - **1.6**  : Vérification de la présense l'outil **"mrt"**
 - **1.5**  : Ajout de nombreuses fonctionnalités
